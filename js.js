@@ -220,8 +220,16 @@ function isBinary(str) {
 
 function RemovePadding_Binary(s) {
   var Number_Padding = Bin_to_Dec(s.substring(56, 64));
+  var check = true;
+
   if (Number_Padding >= 1 && Number_Padding <= 7) {
-    s = s.slice(0, (8 - Number_Padding) * 8);
+    for (var i = 8 - Number_Padding; i < 7; i++) {
+      if (Bin_to_Dec(s.substring(i * 8, (i + 1) * 8)) !== Number_Padding) {
+        check = false;
+        break;
+      }
+    }
+    if (check) s = s.slice(0, (8 - Number_Padding) * 8);
   }
   return s;
 }
@@ -617,18 +625,21 @@ function DTripleDes(Cipher_txt, BigKey) {
         "<br>"
     );
   }
+  var tmp = Result[Result.length - 1];
   Result[Result.length - 1] = RemovePadding_Binary(Result[Result.length - 1]);
-  $("#Encrypt").append(
-    "<h4>Block thứ " +
-      Number_Block +
-      " sau khi xóa Padding: </h4>" +
-      Bin_to_Hex(Result[Result.length - 1]) +
-      " ( Hex ) " +
-      Result[Result.length - 1]
-  );
+  if (tmp != Result[Result.length - 1]) {
+    $("#Encrypt").append(
+      "<h4>Block thứ " +
+        Number_Block +
+        " sau khi xóa Padding: </h4>" +
+        Bin_to_Hex(Result[Result.length - 1]) +
+        " ( Hex ) " +
+        Result[Result.length - 1]
+    );
+  }
   var R = "";
   for (var i = 0; i < Result.length; i++) R += Bin_to_Text(Result[i]);
-  $("#Encrypt").append("<h4>Kết quả giải mã: </h4>" + R);
+  $("#Encrypt").append("<h4>Kết quả giải mã: </h4>" + "<h3>" + R + "</h3>");
 
   return R;
 }
