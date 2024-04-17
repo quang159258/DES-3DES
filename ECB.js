@@ -213,7 +213,8 @@ document.addEventListener("DOMContentLoaded", function () {
         BigKey = AddPadding_Hex(BigKey, (16 - BigKey.length) / 2);
       } else if (BigKey.length > 16 && BigKey.length < 32) {
         BigKey = AddPadding_Hex(BigKey, (32 - BigKey.length) / 2);
-      } else BigKey = AddPadding_Hex(BigKey, (48 - BigKey.length) / 2);
+      } else if (BigKey.length > 32)
+        BigKey = AddPadding_Hex(BigKey, (48 - BigKey.length) / 2);
       switch (BigKey.length) {
         case 16:
           var tmp = BigKey.trim();
@@ -265,7 +266,8 @@ document.addEventListener("DOMContentLoaded", function () {
         BigKey = AddPadding_Hex(BigKey, (16 - BigKey.length) / 2);
       } else if (BigKey.length > 16 && BigKey.length < 32) {
         BigKey = AddPadding_Hex(BigKey, (32 - BigKey.length) / 2);
-      } else BigKey = AddPadding_Hex(BigKey, (48 - BigKey.length) / 2);
+      } else if (BigKey.length > 32)
+        BigKey = AddPadding_Hex(BigKey, (48 - BigKey.length) / 2);
       switch (BigKey.length) {
         case 16:
           var tmp = BigKey;
