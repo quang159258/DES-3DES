@@ -240,11 +240,17 @@ document.addEventListener("DOMContentLoaded", function () {
         BigKey.length === 0 ||
         IV.length === 0 ||
         BigKey.length % 2 == 1 ||
-        IV.length % 2 == 1
+        IV.length % 2 == 1 ||
+        IV.length > 16 ||
+        BigKey.length > 48
       ) {
         isvalid = false;
         Validated.innerHTML +=
           "<span>Sai kích thước văn bản hoặc khóa để mã hóa</span>";
+      }
+      if (!isHexadecimal(BigKey) || !isHexadecimal(IV)) {
+        isvalid = false;
+        Validated.innerHTML += "<span>Key hoặc IV không là mã Hex</span>";
       }
       if (!isvalid) {
         event.preventDefault();
@@ -299,7 +305,9 @@ document.addEventListener("DOMContentLoaded", function () {
         BigKey.length === 0 ||
         IV.length === 0 ||
         BigKey.length % 2 == 1 ||
-        IV.length % 2 == 1
+        IV.length % 2 == 1 ||
+        IV.length > 16 ||
+        BigKey.length > 48
       ) {
         isvalid = false;
         Validated.innerHTML +=
@@ -309,6 +317,11 @@ document.addEventListener("DOMContentLoaded", function () {
         isvalid = false;
         Validated.innerHTML +=
           "<span>Không phải là mã Hex hay mã nhị phân</span>";
+      }
+
+      if (!isHexadecimal(BigKey) || !isHexadecimal(IV)) {
+        isvalid = false;
+        Validated.innerHTML += "<span>Key hoặc IV không là mã Hex</span>";
       }
       if (!isvalid) {
         event.preventDefault();

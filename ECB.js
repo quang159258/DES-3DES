@@ -199,10 +199,19 @@ document.addEventListener("DOMContentLoaded", function () {
       var Validated = document.getElementById("Validated");
       Validated.innerHTML = "";
       var isvalid = true;
-      if (input.length === 0 || BigKey.length === 0 || BigKey.length % 2 == 1) {
+      if (
+        input.length === 0 ||
+        BigKey.length === 0 ||
+        BigKey.length % 2 == 1 ||
+        BigKey.length > 48
+      ) {
         isvalid = false;
         Validated.innerHTML +=
           "<span>Sai kích thước văn bản hoặc khóa để mã hóa</span>";
+      }
+      if (!isHexadecimal(BigKey)) {
+        isvalid = false;
+        Validated.innerHTML += "<span>Key không là mã Hex</span>";
       }
       if (!isvalid) {
         event.preventDefault();
@@ -246,7 +255,12 @@ document.addEventListener("DOMContentLoaded", function () {
       var Validated = document.getElementById("Validated");
       Validated.innerHTML = "";
       var isvalid = true;
-      if (input.length === 0 || BigKey.length === 0 || BigKey.length % 2 == 1) {
+      if (
+        input.length === 0 ||
+        BigKey.length === 0 ||
+        BigKey.length % 2 == 1 ||
+        BigKey.length > 48
+      ) {
         isvalid = false;
         Validated.innerHTML +=
           "<span>Sai kích thước văn bản hoặc khóa để giải mã</span><br>";
@@ -255,6 +269,11 @@ document.addEventListener("DOMContentLoaded", function () {
         isvalid = false;
         Validated.innerHTML +=
           "<span>Không phải là mã Hex hay mã nhị phân</span>";
+      }
+
+      if (!isHexadecimal(BigKey)) {
+        isvalid = false;
+        Validated.innerHTML += "<span>Key không là mã Hex</span>";
       }
       if (!isvalid) {
         event.preventDefault();

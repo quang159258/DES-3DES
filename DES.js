@@ -202,10 +202,6 @@ function isHexadecimal(str) {
   if (!hexRegex.test(str)) {
     return false;
   }
-  if (str.length % 16 !== 0) {
-    return false;
-  }
-
   return true;
 }
 function isBinary(str) {
@@ -213,11 +209,6 @@ function isBinary(str) {
   if (!binaryRegex.test(str)) {
     return false;
   }
-
-  if (str.length % 64 !== 0) {
-    return false;
-  }
-
   return true;
 }
 
