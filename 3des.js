@@ -392,10 +392,10 @@ function DTripleDes_ECB(Cipher_txt, BigKey) {
 document
   .querySelector("#Encryption")
   .addEventListener("click", function (event) {
-    var input = document.getElementById("InputText").value.trim();
-    var BigKey = document.getElementById("InputKey").value.trim();
-    var Validated = document.getElementById("Validated");
-    Validated.innerHTML = "";
+    var input = $("#InputText").val().trim();
+    var BigKey = $("#InputKey").val().trim();
+    var Validated = $("#Validated");
+    Validated.html("");
     var isvalid = true;
     var mode = $("#EncryptionModeSelect").val();
     if (
@@ -413,7 +413,7 @@ document
       Validated.innerHTML += "<span>Key không là mã Hex</span>";
     }
     if (mode === "CBC") {
-      var IV = document.getElementById("InputIV").value.trim();
+      var IV = $("#InputIV").val().trim();
       if (IV.length === 0 || IV.length % 2 == 1 || IV.length > 16) {
         isvalid = false;
         Validated.innerHTML +=
@@ -499,11 +499,11 @@ document
 document
   .querySelector("#Dencryption")
   .addEventListener("click", function (event) {
-    var input = document.getElementById("InputText").value.trim();
-    var BigKey = document.getElementById("InputKey").value.trim();
-    var IV = document.getElementById("InputIV").value.trim();
-    var Validated = document.getElementById("Validated");
-    Validated.innerHTML = "";
+    var input = $("#InputText").val().trim();
+    var BigKey = $("#InputKey").val().trim();
+    var IV = $("#InputIV").val().trim();
+    var Validated = $("#Validated");
+    Validated.html("");
     var isvalid = true;
     var mode = $("#EncryptionModeSelect").val();
     if (
@@ -526,7 +526,7 @@ document
       Validated.innerHTML += "<span>Key không là mã Hex</span>";
     }
     if (mode === "CBC") {
-      var IV = document.getElementById("InputIV").value.trim();
+      var IV = $("#InputIV").val().trim();
       if (IV.length === 0 || IV.length % 2 == 1 || IV.length > 16) {
         isvalid = false;
         Validated.innerHTML +=
