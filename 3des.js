@@ -8,7 +8,6 @@ function ETripleDes_CBC(Plain_txt, BigKey, IV) {
     "<h4>Nội dung: " +
       Bin_to_Hex(Binary_Plain) +
       " ( Hex ) <br>" +
-      Binary_Plain +
       "</h4>Được chia thành các Block 64 bits:<br>"
   );
   var Block_64 = [];
@@ -105,9 +104,7 @@ function ETripleDes_CBC(Plain_txt, BigKey, IV) {
     );
     previousCipher = Result.substring(j * 64, (j + 1) * 64);
   }
-  desk.append(
-    "<h4>Kết quả mã hóa: </h4>" + Bin_to_Hex(Result) + " ( Hex ) " + Result
-  );
+  desk.append("<h4>Kết quả mã hóa: </h4>" + Bin_to_Hex(Result) + " ( Hex ) ");
   return Bin_to_Hex(Result);
 }
 function DTripleDes_CBC(Cipher_txt, BigKey, IV) {
@@ -121,7 +118,6 @@ function DTripleDes_CBC(Cipher_txt, BigKey, IV) {
     "<h4>Nội dung: " +
       Bin_to_Hex(Binary_Cipher) +
       " ( Hex ) <br>" +
-      Binary_Cipher +
       "</h4>Được chia thành các Block 64 bits:<br>"
   );
   var Number_Block = 0;
@@ -213,7 +209,6 @@ function ETripleDes_ECB(Plain_txt, BigKey) {
     "<h4>Nội dung: " +
       Bin_to_Hex(Binary_Plain) +
       " ( Hex ) <br>" +
-      Binary_Plain +
       "</h4>Được chia thành các Block 64 bits:<br>"
   );
   var Block_64 = [];
@@ -306,9 +301,7 @@ function ETripleDes_ECB(Plain_txt, BigKey) {
         "<br>"
     );
   }
-  desk.append(
-    "<h4>Kết quả mã hóa: </h4>" + Bin_to_Hex(Result) + " ( Hex ) " + Result
-  );
+  desk.append("<h4>Kết quả mã hóa: </h4>" + Bin_to_Hex(Result) + " ( Hex ) ");
   return Bin_to_Hex(Result);
 }
 function DTripleDes_ECB(Cipher_txt, BigKey) {
@@ -320,7 +313,6 @@ function DTripleDes_ECB(Cipher_txt, BigKey) {
     "<h4>Nội dung: " +
       Bin_to_Hex(Binary_Cipher) +
       " ( Hex ) <br>" +
-      Binary_Cipher +
       "</h4>Được chia thành các Block 64 bits:<br>"
   );
   var Number_Block = 0;
