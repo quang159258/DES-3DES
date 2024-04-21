@@ -19,7 +19,7 @@
   </head>
   <body>
     <div
-      class="container-md"
+      class="container-fluid"
       style="background-color: rgb(239, 239, 239); min-height: 400px"
     >
       <h3>Giải thuật 3DES - ECB</h3>
@@ -39,6 +39,22 @@
           id="InputKey"
           placeholder="Nhập Key vào (Mã Hex)"
         />
+        <label for="InputIV" class="my-2" id="IVlabel" style="display: none"
+          >Nhập IV</label
+        >
+        <input
+          type="text"
+          name="IV"
+          id="InputIV"
+          placeholder="Nhập IV vào (Mã Hex - 16)"
+          style="display: none"
+        />
+        <label for="EncryptionModeSelect" class="my-2">Chế độ</label>
+        <select id="EncryptionModeSelect">
+          <option value="ECB">ECB</option>
+          <option value="CBC">CBC</option>
+        </select>
+
         <div class="d-flex flex-row justify-content-center my-3">
           <input type="button" value="Mã hóa" id="Encryption" class="mx-2" />
           <input type="button" value="Giải mã" id="Dencryption" class="mx-2" />
@@ -63,6 +79,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="./DES.js"></script>
-    <script src="./ECB.js"></script>
+    <script src="./3des.js"></script>
   </body>
 </html>

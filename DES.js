@@ -453,3 +453,23 @@ function AddPadding_Hex(s, n) {
   }
   return s;
 }
+document
+  .getElementById("EncryptionModeSelect")
+  .addEventListener("change", function () {
+    var selectedMode = this.value;
+    var label = $("#IVlabel");
+    var input = $("#InputIV");
+    if (selectedMode === "CBC") {
+      label.css("display", "block");
+      input.css("display", "block");
+    } else if (selectedMode === "ECB") {
+      label.css("display", "none");
+      input.css("display", "none");
+    }
+  });
+
+$("#Reset").on("click", function () {
+  $("#Result").html("");
+  $("input[type=text]").val("");
+  $("#Validated").html("");
+});
