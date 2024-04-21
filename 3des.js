@@ -405,23 +405,25 @@ document
       BigKey.length > 48
     ) {
       isvalid = false;
-      Validated.innerHTML +=
-        "<span>Sai kích thước văn bản hoặc khóa để mã hóa</span>";
+      Validated.append(
+        "<span>Sai kích thước văn bản hoặc khóa để mã hóa</span>"
+      );
     }
     if (!isHexadecimal(BigKey)) {
       isvalid = false;
-      Validated.innerHTML += "<span>Key không là mã Hex</span>";
+      Validated.append("<span>Key không là mã Hex</span>");
     }
     if (mode === "CBC") {
       var IV = $("#InputIV").val().trim();
       if (IV.length === 0 || IV.length % 2 == 1 || IV.length > 16) {
         isvalid = false;
-        Validated.innerHTML +=
-          "<span>Sai kích thước văn bản hoặc khóa để mã hóa</span>";
+        Validated.append(
+          "<span>Sai kích thước văn bản hoặc khóa để mã hóa</span>"
+        );
       }
       if (!isHexadecimal(IV)) {
         isvalid = false;
-        Validated.innerHTML += "<span>Key hoặc IV không là mã Hex</span>";
+        Validated.append("<span>Key hoặc IV không là mã Hex</span>");
       }
       if (!isvalid) {
         event.preventDefault();
@@ -446,6 +448,11 @@ document
           break;
         default:
           break;
+      }
+      if (!CheckOptionKey(BigKey)) {
+        Validated.append("<span>Key sai chiến lược</span>");
+        event.preventDefault();
+        return;
       }
       $("#Result").html("");
       $("#Result").append("<h4>Nội dung cần mã hóa: " + input + "</h4>");
@@ -482,6 +489,12 @@ document
         default:
           break;
       }
+
+      if (!CheckOptionKey(BigKey)) {
+        Validated.append("<span>Key sai chiến lược</span>");
+        event.preventDefault();
+        return;
+      }
       $("#Result").html("");
       $("#Result").append("<h4>Nội dung cần mã hóa: " + input + "</h4>");
       for (var i = 0; i < 3; i++)
@@ -513,28 +526,29 @@ document
       BigKey.length > 48
     ) {
       isvalid = false;
-      Validated.innerHTML +=
-        "<span>Sai kích thước văn bản hoặc khóa để giải mã</span><br>";
+      Validated.append(
+        "<span>Sai kích thước văn bản hoặc khóa để giải mã</span><br>"
+      );
     }
     if (!isHexadecimal(input) && !isBinary(input)) {
       isvalid = false;
-      Validated.innerHTML +=
-        "<span>Không phải là mã Hex hay mã nhị phân</span>";
+      Validated.append("<span>Không phải là mã Hex hay mã nhị phân</span>");
     }
     if (!isHexadecimal(BigKey)) {
       isvalid = false;
-      Validated.innerHTML += "<span>Key không là mã Hex</span>";
+      Validated.append("<span>Key không là mã Hex</span>");
     }
     if (mode === "CBC") {
       var IV = $("#InputIV").val().trim();
       if (IV.length === 0 || IV.length % 2 == 1 || IV.length > 16) {
         isvalid = false;
-        Validated.innerHTML +=
-          "<span>Sai kích thước văn bản hoặc khóa để mã hóa</span>";
+        Validated.append(
+          "<span>Sai kích thước văn bản hoặc khóa để mã hóa</span>"
+        );
       }
       if (!isHexadecimal(IV)) {
         isvalid = false;
-        Validated.innerHTML += "<span>IV không là mã Hex</span>";
+        Validated.append("<span>IV không là mã Hex</span>");
       }
       if (!isvalid) {
         event.preventDefault();
@@ -561,6 +575,11 @@ document
           break;
         default:
           break;
+      }
+      if (!CheckOptionKey(BigKey)) {
+        Validated.append("<span>Key sai chiến lược</span>");
+        event.preventDefault();
+        return;
       }
       $("#Result").html("");
       $("#Result").append("<h4>Nội dung cần giải mã: " + input + "</h4>");
@@ -599,6 +618,11 @@ document
         default:
           break;
       }
+      if (!CheckOptionKey(BigKey)) {
+        Validated.append("<span>Key sai chiến lược</span>");
+        event.preventDefault();
+        return;
+      }
       $("#Result").html("");
       $("#Result").append("<h4>Nội dung cần giải mã: " + input + "</h4>");
       for (var i = 0; i < 3; i++)
@@ -612,3 +636,13 @@ document
       DTripleDes_ECB(input, BigKey);
     }
   });
+
+function CheckOptionKey(BigKey) {
+  var K1 = BigKey.substring(0, 16);
+  var K2 = BigKey.substring(16, 32);
+  var K3 = BigKey.substring(32, 48);
+  if (K1 == K2 && K2 == K3) return true;
+  if (K1 == K3 && K1 != K2) return true;
+  if (K1 != K2 && K2 != K3) return true;
+  return false;
+}
